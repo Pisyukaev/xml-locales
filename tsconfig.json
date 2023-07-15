@@ -1,0 +1,7 @@
+{
+	"extends": "@pisyukaev/tsconfig",
+	"compilerOptions": {
+		"outDir": "dist"
+	},
+	"include": ["src"]
+}

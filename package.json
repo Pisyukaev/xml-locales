@@ -1,0 +1,38 @@
+{
+	"name": "xml-locales",
+	"version": "1.0.0",
+	"description": "Tool for locales in xml files",
+	"main": "src/index.js",
+	"bin": {
+		"xml-locales": "src/index.js"
+	},
+	"scripts": {
+		"start": "pnpm build && node dist/bin.mjs",
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"type-check": "tsc --noEmit",
+		"format": "prettier --write **/*.{js,ts,tsx,json}"
+	},
+	"keywords": [
+		"xml-locales",
+		"xml",
+		"locales",
+		"tool",
+		"cli-tool"
+	],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@pisyukaev/prettier-config": "^3.2.1",
+		"@pisyukaev/tsconfig": "^2.0.1",
+		"@types/node": "^20.4.2",
+		"nodemon": "^3.0.1",
+		"ts-node": "^10.9.1",
+		"tsup": "^7.1.0",
+		"typescript": "^5.1.6"
+	},
+	"dependencies": {
+		"@types/yargs": "^17.0.24",
+		"yargs": "^17.7.2"
+	}
+}
