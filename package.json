@@ -7,7 +7,7 @@
 		"xml-locales": "src/index.js"
 	},
 	"scripts": {
-		"start": "pnpm build && node dist/bin.mjs",
+		"start": "pnpm build && node dist/bin.mjs --help",
 		"dev": "tsup --watch",
 		"build": "tsup",
 		"type-check": "tsc --noEmit",
@@ -32,7 +32,10 @@
 		"typescript": "^5.1.6"
 	},
 	"dependencies": {
+		"@inquirer/prompts": "^3.0.2",
 		"@types/yargs": "^17.0.24",
+		"@xmldom/xmldom": "^0.8.9",
+		"xml-formatter": "^3.5.0",
 		"yargs": "^17.7.2"
 	}
 }
