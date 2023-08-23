@@ -18,15 +18,27 @@ export function getFilesFromDir(dirName: string) {
 	});
 }
 
-export function checkKeyExist(key: string, fileData: string) {
-	const matchedKey = new RegExp(`name="${key}"`);
-	const hasKey = fileData.match(matchedKey);
-
-	return hasKey;
+export function checkKeyExist(key: string, strElements: StringElement[]) {
+	return strElements.find(
+		({ key_name }: { key_name: string }) => key_name === key
+	);
 }
 
-export function replaceValue(fileData: string, key: string, newValue: string) {
-	const replacedValue = new RegExp(`(?<=name="${key}">)(.*)(?=<\/string>)`);
+export function replaceValue(
+	strElements: StringElement[],
+	key: string,
+	newValue: string
+) {
+	const replacedStrings = strElements.map((element) => {
+		if (element.key_name === key) {
+			return {
+				...element,
+				'#text': newValue
+			};
+		}
 
-	return fileData.replace(replacedValue, newValue);
+		return element;
+	});
+
+	return replacedStrings;
 }
