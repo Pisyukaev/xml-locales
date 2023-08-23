@@ -34,7 +34,7 @@
 	"dependencies": {
 		"@inquirer/prompts": "^3.0.2",
 		"@types/yargs": "^17.0.24",
-		"@xmldom/xmldom": "^0.8.9",
+		"fast-xml-parser": "^4.2.7",
 		"xml-formatter": "^3.5.0",
 		"yargs": "^17.7.2"
 	}
