@@ -24,6 +24,15 @@ export function checkKeyExist(key: string, strElements: StringElement[]) {
 	);
 }
 
+export function checkKeyValueExist(
+	keyValue: string,
+	strElement: StringElement[]
+) {
+	return strElement.find(
+		(element) => element['#text'] === keyValue || element.key_name === keyValue
+	);
+}
+
 export function replaceValue(
 	strElements: StringElement[],
 	key: string,
