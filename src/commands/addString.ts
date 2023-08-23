@@ -1,12 +1,11 @@
-import { DOMParser, XMLSerializer } from '@xmldom/xmldom';
 import * as fs from 'fs';
 import { readFile } from 'fs/promises';
 import path from 'path';
-import xmlFormatter from 'xml-formatter';
 import type { ArgumentsCamelCase, Argv } from 'yargs';
 
 import { checkKeyExist, getFilesFromDir, replaceValue } from '../utils/files';
 import { hasConflict } from '../utils/queries';
+import { xmlBuilder, xmlFormate, xmlParser } from '../utils/xml';
 
 async function addString(key: string, value: string, directory: string) {
 	let REPLACE_ALL = false;
@@ -18,7 +17,12 @@ async function addString(key: string, value: string, directory: string) {
 			const filePath = path.join(directory, file);
 			const fileData = await readFile(filePath, 'utf-8');
 
-			const hasKey = checkKeyExist(key, fileData);
+			const jsonXml: XmlJson = xmlParser.parse(fileData);
+			const {
+				resources: { string }
+			} = jsonXml;
+
+			const hasKey = checkKeyExist(key, string);
 
 			if (!REPLACE_ALL && hasKey) {
 				const answer = await hasConflict(file);
@@ -33,6 +37,7 @@ async function addString(key: string, value: string, directory: string) {
 						break;
 					}
 					case 'skip': {
+						NEED_REPLACE = false;
 						break;
 					}
 
@@ -44,31 +49,21 @@ async function addString(key: string, value: string, directory: string) {
 
 			const needReplace = REPLACE_ALL || NEED_REPLACE;
 
-			const actualFileData = needReplace
-				? replaceValue(fileData, key, value)
-				: fileData;
+			if (needReplace) {
+				const replacedStrings = replaceValue(string, key, value);
 
-			const parser = new DOMParser();
-			const xmlDoc = parser.parseFromString(actualFileData, 'text/xml');
-			const resourcesNode = xmlDoc.getElementsByTagName('resources')[0];
-
-			if (!resourcesNode) {
-				console.log(`Node <resources> is not found in ${file}!`);
-				break;
+				jsonXml.resources.string = replacedStrings;
 			}
 
 			if (!hasKey) {
-				const newLocalizationStr = xmlDoc.createElement('string');
-				newLocalizationStr.setAttribute('name', key);
-				newLocalizationStr.textContent = value;
-				resourcesNode.appendChild(newLocalizationStr);
+				jsonXml.resources.string.push({
+					key_name: key,
+					'#text': value
+				});
 			}
 
-			const newXml = new XMLSerializer().serializeToString(resourcesNode);
-			const formattedXml = xmlFormatter(newXml, {
-				collapseContent: true,
-				indentation: '  '
-			});
+			const xmlString = xmlBuilder.build(jsonXml);
+			const formattedXml = xmlFormate(xmlString);
 
 			fs.writeFile(filePath, formattedXml, (err) => {
 				if (err) {
