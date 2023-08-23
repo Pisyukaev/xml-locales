@@ -1,4 +1,9 @@
 import * as addString from './addString.js';
 import * as delString from './delString.js';
+import * as sort from './sort.js';
 
-export const commands = [addString, delString];
+export const commands = [
+	addString,
+	delString,
+	sort
+];
