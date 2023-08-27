@@ -6,7 +6,13 @@ import type {
 } from 'fast-xml-parser';
 import type { XMLFormatterOptions } from 'xml-formatter';
 
-const parserOptions: X2jOptionsOptional = {
+interface XmlConstructor {
+	parserOptions?: X2jOptionsOptional;
+	builderOptions?: XmlBuilderOptionsOptional;
+	formateOptions?: XMLFormatterOptions;
+}
+
+const defaultParserOptions: X2jOptionsOptional = {
 	trimValues: true,
 	ignoreDeclaration: true,
 	attributeNamePrefix: 'key_',
@@ -14,23 +20,54 @@ const parserOptions: X2jOptionsOptional = {
 	ignoreAttributes: false
 };
 
-const builderOptions: XmlBuilderOptionsOptional = {
+const defaultBuilderOptions: XmlBuilderOptionsOptional = {
 	ignoreAttributes: false,
 	attributeNamePrefix: 'key_'
 };
 
-const formatterOptions: XMLFormatterOptions = {
+const defaultFormatterOptions: XMLFormatterOptions = {
 	collapseContent: true,
 	indentation: '  '
 };
 
-export const xmlParser = new XMLParser(parserOptions);
-export const xmlBuilder = new XMLBuilder(builderOptions);
-export function xmlFormate(
-	xmlString: string,
-	options: XMLFormatterOptions = formatterOptions
-) {
-	const formattedXml = xmlFormatter(xmlString, options);
+const defaultXmlOptions: XmlConstructor = {
+	parserOptions: defaultParserOptions,
+	builderOptions: defaultBuilderOptions,
+	formateOptions: defaultFormatterOptions
+};
 
-	return formattedXml;
+export class Xml {
+	private parser: XMLParser;
+	private builder: XMLBuilder;
+	private formatter: (xmlString: string) => string;
+
+	constructor(xmlOptions?: XmlConstructor) {
+		const { parserOptions, builderOptions, formateOptions } = {
+			...(xmlOptions || {}),
+			...defaultXmlOptions
+		};
+
+		this.parser = new XMLParser(parserOptions);
+		this.builder = new XMLBuilder(builderOptions);
+		this.formatter = (xmlString: string) =>
+			xmlFormatter(xmlString, formateOptions);
+	}
+
+	xmlToJson(xmlData: string): XmlJson {
+		return this.parser.parse(xmlData);
+	}
+
+	jsonToXml(xmlJson: XmlJson, needFormate: boolean = true): string {
+		const xmlString = this.builder.build(xmlJson);
+
+		if (needFormate) {
+			return this.formate(xmlString);
+		}
+
+		return xmlString;
+	}
+
+	formate(xmlString: string): string {
+		return this.formatter(xmlString);
+	}
 }

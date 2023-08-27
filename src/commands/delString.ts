@@ -5,7 +5,7 @@ import type { ArgumentsCamelCase, Argv } from 'yargs';
 
 import { checkKeyValueExist, getFilesFromDir } from '../utils/files';
 import { deleteAnswer } from '../utils/queries';
-import { xmlBuilder, xmlFormate, xmlParser } from '../utils/xml';
+import { Xml } from '../utils/xml';
 
 async function delString(keyValue: string, directory: string) {
 	let DELETE_ALL = false;
@@ -14,10 +14,11 @@ async function delString(keyValue: string, directory: string) {
 		const files = await getFilesFromDir(directory);
 
 		for (const file of files) {
+			const xml = new Xml();
 			const filePath = path.join(directory, file);
 			const fileData = await readFile(filePath, 'utf-8');
 
-			const jsonXml: XmlJson = xmlParser.parse(fileData);
+			const jsonXml = xml.xmlToJson(fileData);
 			const {
 				resources: { string }
 			} = jsonXml;
@@ -58,10 +59,9 @@ async function delString(keyValue: string, directory: string) {
 				jsonXml.resources.string = filteredStrings;
 			}
 
-			const xmlString = xmlBuilder.build(jsonXml);
-			const formattedXml = xmlFormate(xmlString);
+			const xmlString = xml.jsonToXml(jsonXml);
 
-			fs.writeFile(filePath, formattedXml, (err) => {
+			fs.writeFile(filePath, xmlString, (err) => {
 				if (err) {
 					console.log(`Error at write file ${file}`);
 
