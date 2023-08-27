@@ -78,7 +78,7 @@ async function addString(key: string, value: string, directory: string) {
 	}
 }
 
-export const command = 'addString <key> <value> [directory]';
+export const command = 'add';
 export const description = 'Add one localization string in files';
 
 export function builder(yargs: Argv) {
@@ -86,13 +86,13 @@ export function builder(yargs: Argv) {
 		.option('key', {
 			alias: 'k',
 			desc: 'Key of adding string',
-			requiresArg: true,
+			demandOption: true,
 			type: 'string'
 		})
 		.option('value', {
 			alias: 'v',
 			desc: 'Value of adding string',
-			requiresArg: true,
+			demandOption: true,
 			type: 'string'
 		})
 		.option('directory', {
@@ -100,7 +100,10 @@ export function builder(yargs: Argv) {
 			desc: 'Directory of localization files',
 			type: 'string',
 			default: 'mock'
-		});
+		})
+		.usage(
+			`\nExample:\n $0 ${command} --key key.of.string --value "locale string"`
+		);
 }
 
 export async function handler({

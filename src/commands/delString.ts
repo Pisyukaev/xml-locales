@@ -74,7 +74,7 @@ async function delString(keyValue: string, directory: string) {
 	}
 }
 
-export const command = 'delString <key|value> [directory]';
+export const command = 'delete';
 export const description = 'Delete one localization string in files';
 
 export function builder(yargs: Argv) {
@@ -82,7 +82,7 @@ export function builder(yargs: Argv) {
 		.option('key', {
 			alias: 'k',
 			desc: 'Key or value of delete string',
-			requiresArg: true,
+			demandOption: true,
 			type: 'string'
 		})
 		.option('directory', {
@@ -90,7 +90,10 @@ export function builder(yargs: Argv) {
 			desc: 'Directory of localization files',
 			type: 'string',
 			default: 'mock'
-		});
+		})
+		.usage(
+			`\nExample:\n ${command} --key key.of.string --directory src/locales`
+		);
 }
 
 export async function handler({

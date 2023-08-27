@@ -39,7 +39,7 @@ async function sort(direction: 'asc' | 'desc', directory: string) {
 	}
 }
 
-export const command = 'sort [direction] [directory]';
+export const command = 'sort';
 export const description = 'Sorted keys of strings by asc or desc';
 
 export function builder(yargs: Argv) {
@@ -55,7 +55,8 @@ export function builder(yargs: Argv) {
 			desc: 'Directory of localization files',
 			type: 'string',
 			default: 'mock'
-		});
+		})
+		.usage(`\nExample:\n ${command} --direction desc --directory src/locales`);
 }
 
 export async function handler({
