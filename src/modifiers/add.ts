@@ -1,10 +1,12 @@
 import { checkKeyExist, replaceValue } from '../utils/files';
 import { hasConflict } from '../utils/queries';
+import { sort } from './sort';
 
 export function add(options: {
 	key: string;
 	value: string;
 	directory: string;
+	sort?: 'asc' | 'desc';
 }) {
 	let REPLACE_ALL = false;
 	let NEED_REPLACE = false;
@@ -16,7 +18,7 @@ export function add(options: {
 		filePath: string;
 		jsonXml: XmlJson;
 	}) {
-		const { key, value } = options;
+		const { key, value, sort: sortDirection } = options;
 		const {
 			resources: { string }
 		} = jsonXml;
@@ -59,6 +61,10 @@ export function add(options: {
 				key_name: key,
 				'#text': value
 			});
+		}
+
+		if (sortDirection) {
+			sort({ direction: sortDirection })({ jsonXml });
 		}
 
 		return jsonXml;
