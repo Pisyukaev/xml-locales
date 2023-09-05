@@ -56,25 +56,6 @@ export function replaceValue(
 	return replacedStrings;
 }
 
-export function sortBy(
-	strElements: StringElement[],
-	direction: 'asc' | 'desc'
-) {
-	const { compare } = new Intl.Collator();
-
-	const compareFn = (a: StringElement, b: StringElement) => {
-		const isAsc = direction === 'asc';
-		const first = isAsc ? a : b;
-		const second = isAsc ? b : a;
-
-		return compare(first.key_name.toLowerCase(), second.key_name.toLowerCase());
-	};
-
-	const sortedElements = strElements.sort(compareFn);
-
-	return sortedElements;
-}
-
 export async function modificationFile(
 	callback: ({
 		filePath,

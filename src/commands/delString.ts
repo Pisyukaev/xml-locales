@@ -20,6 +20,11 @@ export function builder(yargs: Argv) {
 			type: 'string',
 			default: 'mock'
 		})
+		.option('sort', {
+			alias: 's',
+			desc: 'Sorted keys of strings by asc or desc',
+			type: 'string'
+		})
 		.usage(
 			`\nExample:\n ${command} --key key.of.string --directory src/locales`
 		);
@@ -27,7 +32,12 @@ export function builder(yargs: Argv) {
 
 export async function handler({
 	key: keyValue,
-	directory
-}: ArgumentsCamelCase<{ key: string; directory: string }>) {
-	modificationFile(del({ keyValue }), directory);
+	directory,
+	sort
+}: ArgumentsCamelCase<{
+	key: string;
+	directory: string;
+	sort?: 'asc' | 'desc';
+}>) {
+	modificationFile(del({ keyValue, sort }), directory);
 }
