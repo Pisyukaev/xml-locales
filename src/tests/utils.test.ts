@@ -4,7 +4,7 @@ import { getFilesFromDir } from '../utils/files';
 
 describe('Get xml files path', () => {
 	test('Files in mock folder', async () => {
-		const paths = await getFilesFromDir('mock');
+		const paths = await getFilesFromDir('src/tests/mock/locales');
 
 		expect(paths).toMatchObject(['strings-en.xml', 'strings.xml']);
 	});
