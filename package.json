@@ -11,7 +11,10 @@
 		"dev": "tsup --watch",
 		"build": "tsup",
 		"type-check": "tsc --noEmit",
-		"format": "prettier --write **/*.{js,ts,tsx,json}"
+		"format": "prettier --write **/*.{js,ts,tsx,json}",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:run": "vitest run"
 	},
 	"keywords": [
 		"xml-locales",
@@ -29,7 +32,8 @@
 		"nodemon": "^3.0.1",
 		"ts-node": "^10.9.1",
 		"tsup": "^7.1.0",
-		"typescript": "^5.1.6"
+		"typescript": "^5.1.6",
+		"vitest": "^0.34.3"
 	},
 	"dependencies": {
 		"@inquirer/prompts": "^3.0.2",
