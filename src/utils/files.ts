@@ -56,6 +56,31 @@ export function replaceValue(
 	return replacedStrings;
 }
 
+export function replace(strElements: StringElement[],
+	 oldKeyValue: string, 
+	 newKeyValue: string
+	 ) {
+		const replaced = strElements.map((element) => {
+			if(element.key_name === oldKeyValue) {
+				return {
+					...element,
+					key_name: newKeyValue
+				}
+			}
+
+			if(element['#text'] === oldKeyValue) {
+				return {
+					...element,
+					'#text': newKeyValue
+				}
+			}
+
+			return element
+		})
+
+		return replaced
+	 }
+
 export async function modificationFile(
 	callback: ({
 		filePath,

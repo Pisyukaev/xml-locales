@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
-import { checkKeyExist, checkKeyValueExist, getFilesFromDir, replaceValue } from '../utils/files';
-import { REPLACED_STRING_ELEMENTS, STRING_ELEMENTS } from './mock/data/stringElements';
+import { checkKeyExist, checkKeyValueExist, getFilesFromDir, replace, replaceValue } from '../utils/files';
+import { REPLACED_VALUE_ELEMENTS,REPLACED_KEY_ELEMENTS, STRING_ELEMENTS } from './mock/data/stringElements';
 
 
 
@@ -30,6 +30,20 @@ describe('checkKeyExist', () => {
 		const hasKey = checkKeyExist('testKey', STRING_ELEMENTS)
 
 		expect(hasKey).toBeFalsy()
+	})
+})
+
+describe('replace', () => {
+	test('replace key', () => {
+		const replacedStrings = replace(STRING_ELEMENTS, 'testKey1', 'newKey')
+		
+		expect(replacedStrings).toMatchObject(REPLACED_KEY_ELEMENTS)
+	})
+
+	test('replace value', () => {
+		const replacedStrings = replace(STRING_ELEMENTS, 'text1', 'newValue')
+		
+		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS)
 	})
 })
 
@@ -63,7 +77,7 @@ describe('replaceValue', () => {
 	test('replaced value', () => {
 		const replacedStrings = replaceValue(STRING_ELEMENTS, 'testKey1', 'newValue')
 
-		expect(replacedStrings).toMatchObject(REPLACED_STRING_ELEMENTS)
+		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS)
 	})
 
 	test('does not replace value', () => {
