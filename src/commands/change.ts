@@ -28,6 +28,12 @@ export function builder(yargs: Argv) {
 			alias: 's',
 			desc: 'Sorted keys of strings by asc or desc',
 			type: 'string'
+		})
+		.option('accept', {
+			alias: 'y',
+			desc: 'Accept change in all files',
+			type: 'boolean',
+			default: false
 		});
 }
 
@@ -35,12 +41,14 @@ export async function handler({
 	oldkey: oldKeyValue,
 	newkey: newKeyValue,
 	directory,
-	sort
+	sort,
+	accept
 }: ArgumentsCamelCase<{
 	oldkey: string;
 	newkey: string;
 	directory: string;
 	sort?: 'asc' | 'desc';
+	accept: boolean;
 }>) {
 	console.log(oldKeyValue, newKeyValue);
 
@@ -48,7 +56,8 @@ export async function handler({
 		change({
 			oldKey: oldKeyValue,
 			newKey: newKeyValue,
-			sort
+			sort,
+			accept
 		}),
 		directory
 	);

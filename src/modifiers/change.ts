@@ -6,6 +6,7 @@ export function change(options: {
 	oldKey: string;
 	newKey: string;
 	sort?: 'asc' | 'desc';
+	accept: boolean;
 }) {
 	let REPLACE_ALL = false;
 	let NEED_REPLACE = false;
@@ -17,14 +18,14 @@ export function change(options: {
 		filePath: string;
 		jsonXml: XmlJson;
 	}) {
-		const { oldKey, newKey, sort: sortDirection } = options;
+		const { oldKey, newKey, sort: sortDirection, accept } = options;
 		const {
 			resources: { string }
 		} = jsonXml;
 
 		const hasKey = checkKeyValueExist(oldKey, string);
 
-		if (!REPLACE_ALL && hasKey) {
+		if (!accept && !REPLACE_ALL && hasKey) {
 			const answer = await hasConflict(filePath);
 
 			switch (answer) {

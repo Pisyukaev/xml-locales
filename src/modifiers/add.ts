@@ -7,6 +7,7 @@ export function add(options: {
 	value: string;
 	directory: string;
 	sort?: 'asc' | 'desc';
+	accept: boolean;
 }) {
 	let REPLACE_ALL = false;
 	let NEED_REPLACE = false;
@@ -18,14 +19,15 @@ export function add(options: {
 		filePath: string;
 		jsonXml: XmlJson;
 	}) {
-		const { key, value, sort: sortDirection } = options;
+		const { key, value, sort: sortDirection, accept } = options;
+
 		const {
 			resources: { string }
 		} = jsonXml;
 
 		const hasKey = checkKeyExist(key, string);
 
-		if (!REPLACE_ALL && hasKey) {
+		if (!accept && !REPLACE_ALL && hasKey) {
 			const answer = await hasConflict(filePath);
 
 			switch (answer) {

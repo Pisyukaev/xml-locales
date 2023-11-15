@@ -25,6 +25,12 @@ export function builder(yargs: Argv) {
 			desc: 'Sorted keys of strings by asc or desc',
 			type: 'string'
 		})
+		.option('accept', {
+			alias: 'y',
+			desc: 'Accept delete in all files',
+			type: 'boolean',
+			default: false
+		})
 		.usage(
 			`\nExample:\n ${command} --key key.of.string --directory src/locales`
 		);
@@ -33,11 +39,13 @@ export function builder(yargs: Argv) {
 export async function handler({
 	key: keyValue,
 	directory,
-	sort
+	sort,
+	accept
 }: ArgumentsCamelCase<{
 	key: string;
 	directory: string;
 	sort?: 'asc' | 'desc';
+	accept: boolean;
 }>) {
-	modificationFile(del({ keyValue, sort }), directory);
+	modificationFile(del({ keyValue, sort, accept }), directory);
 }

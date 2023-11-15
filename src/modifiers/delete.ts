@@ -2,7 +2,11 @@ import { checkKeyValueExist } from '../utils/files';
 import { deleteAnswer } from '../utils/queries';
 import { sort } from './sort';
 
-export function del(options: { keyValue: string; sort?: 'asc' | 'desc' }) {
+export function del(options: {
+	keyValue: string;
+	sort?: 'asc' | 'desc';
+	accept: boolean;
+}) {
 	let DELETE_ALL = false;
 	let NEED_DELETE = false;
 
@@ -13,14 +17,14 @@ export function del(options: { keyValue: string; sort?: 'asc' | 'desc' }) {
 		filePath: string;
 		jsonXml: XmlJson;
 	}) {
-		const { keyValue, sort: sortDirection } = options;
+		const { keyValue, sort: sortDirection, accept } = options;
 		const {
 			resources: { string }
 		} = jsonXml;
 
 		const hasKeyValue = checkKeyValueExist(keyValue, string);
 
-		if (!DELETE_ALL && hasKeyValue) {
+		if (!accept && !DELETE_ALL && hasKeyValue) {
 			const answer = await deleteAnswer(filePath);
 
 			switch (answer) {
