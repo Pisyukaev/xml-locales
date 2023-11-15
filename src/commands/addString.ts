@@ -31,6 +31,12 @@ export function builder(yargs: Argv) {
 			desc: 'Sorted keys of strings by asc or desc',
 			type: 'string'
 		})
+		.option('accept', {
+			alias: 'y',
+			desc: 'Accept add in all files',
+			type: 'boolean',
+			default: false
+		})
 		.usage(
 			`\nExample:\n $0 ${command} --key key.of.string --value "locale string"`
 		);
@@ -40,12 +46,14 @@ export async function handler({
 	key,
 	value,
 	directory,
-	sort
+	sort,
+	accept
 }: ArgumentsCamelCase<{
 	key: string;
 	value: string;
 	directory: string;
 	sort?: 'asc' | 'desc';
+	accept: boolean;
 }>) {
-	modificationFile(add({ key, directory, value, sort }), directory);
+	modificationFile(add({ key, directory, value, sort, accept }), directory);
 }
