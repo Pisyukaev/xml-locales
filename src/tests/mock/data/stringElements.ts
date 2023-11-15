@@ -7,7 +7,7 @@ export const STRING_ELEMENTS = [
 		key_name: 'testKey2',
 		'#text': 'text2'
 	}
-]
+];
 
 export const REPLACED_VALUE_ELEMENTS = [
 	{
@@ -18,7 +18,7 @@ export const REPLACED_VALUE_ELEMENTS = [
 		key_name: 'testKey2',
 		'#text': 'text2'
 	}
-]
+];
 
 export const REPLACED_KEY_ELEMENTS = [
 	{
@@ -29,4 +29,4 @@ export const REPLACED_KEY_ELEMENTS = [
 		key_name: 'testKey2',
 		'#text': 'text2'
 	}
-]
+];

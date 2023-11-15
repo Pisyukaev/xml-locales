@@ -9,4 +9,3 @@ yargs(hideBin(process.argv))
 	// @ts-ignore
 	.command(commands)
 	.help().argv;
-

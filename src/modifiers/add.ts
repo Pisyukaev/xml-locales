@@ -1,6 +1,6 @@
-import { checkKeyExist, replaceValue } from '../utils/files';
-import { hasConflict } from '../utils/queries';
-import { sort } from './sort';
+import { checkKeyExist, replaceValue } from '../utils/files.js';
+import { hasConflict } from '../utils/queries.js';
+import { sort } from './sort.js';
 
 export function add(options: {
 	key: string;
