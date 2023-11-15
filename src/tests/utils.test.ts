@@ -1,9 +1,17 @@
 import { describe, expect, test } from 'vitest';
 
-import { checkKeyExist, checkKeyValueExist, getFilesFromDir, replace, replaceValue } from '../utils/files';
-import { REPLACED_VALUE_ELEMENTS,REPLACED_KEY_ELEMENTS, STRING_ELEMENTS } from './mock/data/stringElements';
-
-
+import {
+	checkKeyExist,
+	checkKeyValueExist,
+	getFilesFromDir,
+	replace,
+	replaceValue
+} from '../utils/files';
+import {
+	REPLACED_KEY_ELEMENTS,
+	REPLACED_VALUE_ELEMENTS,
+	STRING_ELEMENTS
+} from './mock/data/stringElements';
 
 describe('Get xml files path', () => {
 	test('Files in mock folder', async () => {
@@ -21,68 +29,76 @@ describe('Get xml files path', () => {
 
 describe('checkKeyExist', () => {
 	test('has key', () => {
-		const hasKey = checkKeyExist('testKey1', STRING_ELEMENTS)
+		const hasKey = checkKeyExist('testKey1', STRING_ELEMENTS);
 
-		expect(hasKey).toBeTruthy()
-	})
+		expect(hasKey).toBeTruthy();
+	});
 
 	test('has no key', () => {
-		const hasKey = checkKeyExist('testKey', STRING_ELEMENTS)
+		const hasKey = checkKeyExist('testKey', STRING_ELEMENTS);
 
-		expect(hasKey).toBeFalsy()
-	})
-})
+		expect(hasKey).toBeFalsy();
+	});
+});
 
 describe('replace', () => {
 	test('replace key', () => {
-		const replacedStrings = replace(STRING_ELEMENTS, 'testKey1', 'newKey')
-		
-		expect(replacedStrings).toMatchObject(REPLACED_KEY_ELEMENTS)
-	})
+		const replacedStrings = replace(STRING_ELEMENTS, 'testKey1', 'newKey');
+
+		expect(replacedStrings).toMatchObject(REPLACED_KEY_ELEMENTS);
+	});
 
 	test('replace value', () => {
-		const replacedStrings = replace(STRING_ELEMENTS, 'text1', 'newValue')
-		
-		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS)
-	})
-})
+		const replacedStrings = replace(STRING_ELEMENTS, 'text1', 'newValue');
+
+		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS);
+	});
+});
 
 describe('checkKeyValueExist', () => {
 	describe('key', () => {
 		test('key exist', () => {
-		const hasKey = checkKeyValueExist('testKey1', STRING_ELEMENTS)
-		expect(hasKey).toBeTruthy()
-		})
+			const hasKey = checkKeyValueExist('testKey1', STRING_ELEMENTS);
+			expect(hasKey).toBeTruthy();
+		});
 
 		test('key no exist', () => {
-			const hasKey = checkKeyValueExist('someKey', STRING_ELEMENTS)
-			expect(hasKey).toBeFalsy()
-			})
-	})
+			const hasKey = checkKeyValueExist('someKey', STRING_ELEMENTS);
+			expect(hasKey).toBeFalsy();
+		});
+	});
 
 	describe('value', () => {
 		test('value exist', () => {
-			const hasKey = checkKeyValueExist('text1', STRING_ELEMENTS)
-			expect(hasKey).toBeTruthy()
-			})
+			const hasKey = checkKeyValueExist('text1', STRING_ELEMENTS);
+			expect(hasKey).toBeTruthy();
+		});
 
-			test('value no exist', () => {
-				const hasKey = checkKeyValueExist('someValue', STRING_ELEMENTS)
-				expect(hasKey).toBeFalsy()
-				})
-	})
-})
+		test('value no exist', () => {
+			const hasKey = checkKeyValueExist('someValue', STRING_ELEMENTS);
+			expect(hasKey).toBeFalsy();
+		});
+	});
+});
 
 describe('replaceValue', () => {
 	test('replaced value', () => {
-		const replacedStrings = replaceValue(STRING_ELEMENTS, 'testKey1', 'newValue')
+		const replacedStrings = replaceValue(
+			STRING_ELEMENTS,
+			'testKey1',
+			'newValue'
+		);
 
-		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS)
-	})
+		expect(replacedStrings).toMatchObject(REPLACED_VALUE_ELEMENTS);
+	});
 
 	test('does not replace value', () => {
-		const replacedStrings = replaceValue(STRING_ELEMENTS, 'someKey', 'someValue')
+		const replacedStrings = replaceValue(
+			STRING_ELEMENTS,
+			'someKey',
+			'someValue'
+		);
 
-		expect(replacedStrings).toMatchObject(STRING_ELEMENTS)
-	})
-})
+		expect(replacedStrings).toMatchObject(STRING_ELEMENTS);
+	});
+});

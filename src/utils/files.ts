@@ -9,6 +9,7 @@ export function getFilesFromDir(dirName: string) {
 		fs.readdir(dirName, (err, files) => {
 			if (err) {
 				reject(err);
+				return;
 			}
 
 			const allFileIsXML = files.every((file) => file.endsWith('xml'));
@@ -56,30 +57,31 @@ export function replaceValue(
 	return replacedStrings;
 }
 
-export function replace(strElements: StringElement[],
-	 oldKeyValue: string, 
-	 newKeyValue: string
-	 ) {
-		const replaced = strElements.map((element) => {
-			if(element.key_name === oldKeyValue) {
-				return {
-					...element,
-					key_name: newKeyValue
-				}
-			}
+export function replace(
+	strElements: StringElement[],
+	oldKeyValue: string,
+	newKeyValue: string
+) {
+	const replaced = strElements.map((element) => {
+		if (element.key_name === oldKeyValue) {
+			return {
+				...element,
+				key_name: newKeyValue
+			};
+		}
 
-			if(element['#text'] === oldKeyValue) {
-				return {
-					...element,
-					'#text': newKeyValue
-				}
-			}
+		if (element['#text'] === oldKeyValue) {
+			return {
+				...element,
+				'#text': newKeyValue
+			};
+		}
 
-			return element
-		})
+		return element;
+	});
 
-		return replaced
-	 }
+	return replaced;
+}
 
 export async function modificationFile(
 	callback: ({

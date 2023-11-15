@@ -1,4 +1,4 @@
-import {  checkKeyValueExist, replace } from '../utils/files';
+import { checkKeyValueExist, replace } from '../utils/files';
 import { hasConflict } from '../utils/queries';
 import { sort } from './sort';
 

@@ -29,8 +29,7 @@ export function builder(yargs: Argv) {
 			desc: 'Sorted keys of strings by asc or desc',
 			type: 'string'
 		});
-  }
-
+}
 
 export async function handler({
 	oldkey: oldKeyValue,
@@ -43,12 +42,14 @@ export async function handler({
 	directory: string;
 	sort?: 'asc' | 'desc';
 }>) {
+	console.log(oldKeyValue, newKeyValue);
 
-	console.log(oldKeyValue, newKeyValue)
-
-	modificationFile(change({ 
-		oldKey: oldKeyValue, 
-		newKey: newKeyValue, 
-		sort }), 
-		directory);
+	modificationFile(
+		change({
+			oldKey: oldKeyValue,
+			newKey: newKeyValue,
+			sort
+		}),
+		directory
+	);
 }
