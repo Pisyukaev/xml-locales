@@ -19,13 +19,18 @@ export function change(options: {
 		jsonXml: XmlJson;
 	}) {
 		const { oldKey, newKey, sort: sortDirection, accept } = options;
+
+		if (accept) {
+			REPLACE_ALL = true;
+		}
+
 		const {
 			resources: { string }
 		} = jsonXml;
 
 		const hasKey = checkKeyValueExist(oldKey, string);
 
-		if (!accept && !REPLACE_ALL && hasKey) {
+		if (!REPLACE_ALL && hasKey) {
 			const answer = await hasConflict(filePath);
 
 			switch (answer) {

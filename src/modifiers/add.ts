@@ -21,13 +21,17 @@ export function add(options: {
 	}) {
 		const { key, value, sort: sortDirection, accept } = options;
 
+		if (accept) {
+			REPLACE_ALL = true;
+		}
+
 		const {
 			resources: { string }
 		} = jsonXml;
 
 		const hasKey = checkKeyExist(key, string);
 
-		if (!accept && !REPLACE_ALL && hasKey) {
+		if (!REPLACE_ALL && hasKey) {
 			const answer = await hasConflict(filePath);
 
 			switch (answer) {
