@@ -18,6 +18,11 @@ export function del(options: {
 		jsonXml: XmlJson;
 	}) {
 		const { keyValue, sort: sortDirection, accept } = options;
+
+		if (accept) {
+			DELETE_ALL = true;
+		}
+
 		const {
 			resources: { string }
 		} = jsonXml;
