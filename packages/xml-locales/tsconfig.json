@@ -1,0 +1,9 @@
+{
+	"extends": "@pisyukaev/tsconfig",
+	"compilerOptions": {
+		"outDir": "dist",
+		"noUnusedLocals": false,
+		"noUnusedParameters": false
+	},
+	"include": ["src", "tests"]
+}

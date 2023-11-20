@@ -1,0 +1,31 @@
+{
+	"name": "xml-locales",
+	"description": "Tool for locales in xml files",
+	"version": "0.0.0",
+	"type": "module",
+	"keywords": [
+		"xml-locales",
+		"xml",
+		"locales"
+	],
+	"types": "./dist/index.d.ts",
+	"typesVersions": {
+    "*": {
+      "utils": ["./dist/utils/index.d.ts"]
+		}
+	},
+	"exports": {
+		".": "./dist/index.js",
+		"./utils": "./dist/utils/index.js"
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"test": "vitest run --coverage",
+    "test:watch": "vitest --ui --watch --coverage"
+	},
+	"dependencies": {
+		"fast-xml-parser": "4.3.2",
+		"xml-formatter": "3.6.0"
+	}
+}
