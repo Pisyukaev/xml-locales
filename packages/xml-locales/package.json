@@ -10,8 +10,10 @@
 	],
 	"types": "./dist/index.d.ts",
 	"typesVersions": {
-    "*": {
-      "utils": ["./dist/utils/index.d.ts"]
+		"*": {
+			"utils": [
+				"./dist/utils/index.d.ts"
+			]
 		}
 	},
 	"exports": {
@@ -22,7 +24,7 @@
 		"dev": "tsup --watch",
 		"build": "tsup",
 		"test": "vitest run --coverage",
-    "test:watch": "vitest --ui --watch --coverage"
+		"test:watch": "vitest --ui --watch --coverage"
 	},
 	"dependencies": {
 		"fast-xml-parser": "4.3.2",
