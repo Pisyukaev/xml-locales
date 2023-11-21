@@ -3,7 +3,7 @@
 	"version": "0.0.2",
 	"type": "module",
 	"bin": {
-		"xml-locales": "./dist/index.js"
+		"xml-locales": "./dist/bin.js"
 	},
 	"keywords": [
 		"xml-locales",
