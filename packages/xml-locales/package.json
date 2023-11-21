@@ -1,7 +1,7 @@
 {
 	"name": "xml-locales",
 	"description": "Tool for locales in xml files",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "module",
 	"keywords": [
 		"xml-locales",
@@ -33,9 +33,5 @@
 		"build": "tsup",
 		"test": "vitest run --coverage",
 		"test:watch": "vitest --ui --watch --coverage"
-	},
-	"dependencies": {
-		"fast-xml-parser": "4.3.2",
-		"xml-formatter": "3.6.0"
 	}
 }
