@@ -1,0 +1,26 @@
+{
+	"name": "@xml-locales/cli",
+	"version": "0.0.0",
+	"type": "module",
+	"bin": {
+		"xml-locales": "./dist/index.js"
+	},
+	"keywords": [
+		"xml-locales",
+		"xml",
+		"locales",
+		"tool",
+		"cli-tool"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "vitest run --coverage",
+		"test:watch": "vitest --ui --watch --coverage"
+	},
+	"dependencies": {
+		"@inquirer/prompts": "3.3.0",
+		"@types/yargs": "17.0.32",
+		"xml-locales": "workspace:0.0.0",
+		"yargs": "17.7.2"
+	}
+}
