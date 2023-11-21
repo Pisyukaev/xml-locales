@@ -1,13 +1,18 @@
 {
 	"name": "xml-locales",
 	"description": "Tool for locales in xml files",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"keywords": [
 		"xml-locales",
 		"xml",
 		"locales"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Pisyukaev/xml-locales.git",
+		"directory": "packages/xml-locales"
+	},
 	"types": "./dist/index.d.ts",
 	"typesVersions": {
 		"*": {
