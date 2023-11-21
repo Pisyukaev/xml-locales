@@ -1,9 +1,10 @@
-import type { StringElement, XmlJson } from '../utils/types.js';
+import type {
+	SortDirection,
+	SortOptions,
+	StringElement
+} from '../utils/types.js';
 
-export function sortBy(
-	strElements: StringElement[],
-	direction: 'asc' | 'desc'
-) {
+export function sortBy(strElements: StringElement[], direction: SortDirection) {
 	const { compare } = new Intl.Collator();
 
 	const compareFn = (a: StringElement, b: StringElement) => {
@@ -19,15 +20,13 @@ export function sortBy(
 	return sortedElements;
 }
 
-export function sort({ direction }: { direction: 'asc' | 'desc' }) {
-	return function ({ jsonXml }: { jsonXml: XmlJson }) {
-		const {
-			resources: { string }
-		} = jsonXml;
+export function sort({ sortDirection, jsonXml }: SortOptions) {
+	const {
+		resources: { string }
+	} = jsonXml;
 
-		const sortedString = sortBy(string, direction);
-		jsonXml.resources.string = sortedString;
+	const sortedString = sortBy(string, sortDirection);
+	jsonXml.resources.string = sortedString;
 
-		return jsonXml;
-	};
+	return jsonXml;
 }

@@ -1,34 +1,16 @@
-import path from 'node:path';
 import { describe, expect, test } from 'vitest';
 
 import {
 	checkKeyExist,
 	checkKeyValueExist,
-	getFilesFromDir,
 	replace,
 	replaceValue
-} from '../src/utils/files';
+} from '../src/utils/helpers.js';
 import {
 	REPLACED_KEY_ELEMENTS,
 	REPLACED_VALUE_ELEMENTS,
 	STRING_ELEMENTS
-} from './mock/data/stringElements';
-
-const __dirname = new URL('.', import.meta.url).pathname;
-
-describe('Get xml files path', () => {
-	test('Files in mock folder', async () => {
-		const paths = await getFilesFromDir(
-			path.resolve(__dirname, 'mock', 'locales')
-		);
-		expect(paths).toMatchObject(['strings-en.xml', 'strings.xml']);
-	});
-
-	test('Folder have not xml files', async () => {
-		const paths = getFilesFromDir(path.resolve(__dirname, '..', 'src'));
-		expect(paths).rejects.toThrow('Not all files have *.xml extension');
-	});
-});
+} from './mock/data/stringElements.js';
 
 describe('checkKeyExist', () => {
 	test('has key', () => {
