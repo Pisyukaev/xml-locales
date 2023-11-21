@@ -1,5 +1,11 @@
 # @xml-locales/cli
 
+## 0.0.4
+
+### Patch Changes
+
+- do not build .d.ts and .map files
+
 ## 0.0.3
 
 ### Patch Changes
