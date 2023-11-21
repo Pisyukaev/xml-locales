@@ -1,5 +1,11 @@
 # xml-locales
 
+## 0.0.2
+
+### Patch Changes
+
+- include dist folder to npm publish
+
 ## 0.0.1
 
 ### Patch Changes
