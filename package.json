@@ -11,9 +11,11 @@
 		"build": "turbo run build --filter=./packages/*",
 		"test": "pnpm build && vitest run --coverage",
 		"test:watch": "vitest --ui --watch --coverage",
-		"format": "prettier --write **/*.{js,ts,tsx,json}"
+		"format": "prettier --write **/*.{js,ts,tsx,json}",
+		"changeset": "changeset"
 	},
 	"devDependencies": {
+		"@changesets/cli": "2.26.2",
 		"@pisyukaev/prettier-config": "3.3.2",
 		"@pisyukaev/tsconfig": "2.0.1",
 		"@types/node": "20.9.3",
