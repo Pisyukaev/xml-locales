@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.turbo
+.github
+.vscode
+.changeset
+*.log*
+*.log
+*.yaml
+*.yml
+*.md
