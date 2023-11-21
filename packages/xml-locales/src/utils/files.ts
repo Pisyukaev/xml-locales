@@ -1,6 +1,6 @@
-import * as fs from 'fs';
-import { readFile } from 'fs/promises';
-import path from 'path';
+import fs from 'node:fs';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import { Xml } from './xml.js';
 import type { StringElement, XmlJson } from './types.js';

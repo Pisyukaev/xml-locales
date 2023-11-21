@@ -1,4 +1,4 @@
-import * as fs from 'fs/promises';
+import fs from 'node:fs/promises';
 import type { ArgumentsCamelCase, Argv } from 'yargs';
 
 export const command = 'new';

@@ -1,4 +1,4 @@
-import { checkKeyValueExist } from '../utils/files.js';
+// import { checkKeyValueExist } from '../utils/files.js';
 // import { deleteAnswer } from '../../../cli/src/utils/queries.js';
 import { sort } from './sort.js';
 import type { XmlJson } from '../utils/types.js';
