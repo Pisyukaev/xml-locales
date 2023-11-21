@@ -1,5 +1,11 @@
 # @xml-locales/cli
 
+## 0.0.3
+
+### Patch Changes
+
+- fixed path to executable file
+
 ## 0.0.2
 
 ### Patch Changes
