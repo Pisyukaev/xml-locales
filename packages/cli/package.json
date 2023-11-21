@@ -1,6 +1,6 @@
 {
 	"name": "@xml-locales/cli",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"bin": {
 		"xml-locales": "./dist/index.js"
@@ -25,7 +25,7 @@
 	"dependencies": {
 		"@inquirer/prompts": "3.3.0",
 		"@types/yargs": "17.0.32",
-		"xml-locales": "workspace:0.0.0",
+		"xml-locales": "workspace:0.0.1",
 		"yargs": "17.7.2"
 	}
 }
