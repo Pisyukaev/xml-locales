@@ -12,6 +12,11 @@
 		"tool",
 		"cli-tool"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Pisyukaev/xml-locales.git",
+		"directory": "packages/cli"
+	},
 	"scripts": {
 		"build": "tsc",
 		"test": "vitest run --coverage",

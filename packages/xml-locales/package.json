@@ -8,6 +8,11 @@
 		"xml",
 		"locales"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Pisyukaev/xml-locales.git",
+		"directory": "packages/xml-locales"
+	},
 	"types": "./dist/index.d.ts",
 	"typesVersions": {
 		"*": {
