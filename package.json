@@ -14,16 +14,15 @@
 		"format": "prettier --write **/*.{js,ts,tsx,json}"
 	},
 	"devDependencies": {
-		"@pisyukaev/prettier-config": "^3.2.1",
-		"@pisyukaev/tsconfig": "^2.0.1",
-		"@types/node": "^20.4.2",
-		"@vitest/coverage-v8": "^0.34.6",
-		"@vitest/ui": "^0.34.6",
-		"prettier": "2.8.8",
-		"tsup": "^8.0.0",
-		"turbo": "^1.10.16",
-		"typescript": "^5.1.6",
-		"vite": "^5.0.0",
-		"vitest": "^0.34.3"
+		"@pisyukaev/prettier-config": "3.3.2",
+		"@pisyukaev/tsconfig": "2.0.1",
+		"@types/node": "20.9.3",
+		"@vitest/coverage-v8": "0.34.6",
+		"@vitest/ui": "0.34.6",
+		"tsup": "8.0.1",
+		"turbo": "1.10.16",
+		"typescript": "5.3.2",
+		"vite": "5.0.0",
+		"vitest": "0.34.6"
 	}
 }
