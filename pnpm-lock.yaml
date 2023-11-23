@@ -50,12 +50,6 @@ importers:
       '@types/yargs':
         specifier: 17.0.32
         version: 17.0.32
-      fast-xml-parser:
-        specifier: ^4.3.2
-        version: 4.3.2
-      xml-formatter:
-        specifier: ^3.6.0
-        version: 3.6.0
       xml-locales:
         specifier: workspace:0.0.3
         version: link:../xml-locales
