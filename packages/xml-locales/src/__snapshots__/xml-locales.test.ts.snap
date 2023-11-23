@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`XmlLocales > XmlLocales constructor > constructor should parse xml data 1`] = `
+XmlJsonData {
+  "resources": {
+    "string": [
+      {
+        "#text": "value1",
+        "key_name": "key1",
+      },
+    ],
+  },
+}
+`;
+
+exports[`XmlLocales > XmlLocales constructor > should return json object 1`] = `
+XmlJsonData {
+  "resources": {
+    "#text": "
+  
+  
+",
+    "string": [
+      {
+        "#text": "value1",
+        "key_name": "key1",
+      },
+      {
+        "#text": "value2",
+        "key_name": "key2",
+      },
+    ],
+  },
+}
+`;
+
+exports[`XmlLocales > should return json object 1`] = `
+XmlJsonData {
+  "resources": {
+    "#text": "
+  
+  
+",
+    "string": [
+      {
+        "#text": "value1",
+        "key_name": "key1",
+      },
+      {
+        "#text": "value2",
+        "key_name": "key2",
+      },
+    ],
+  },
+}
+`;
+
+exports[`XmlLocales > should return xml string 1`] = `
+"<resources>
+  <string name=\\"key1\\">value1</string>
+  <string name=\\"key2\\">value2</string>
+</resources>"
+`;
+
+exports[`XmlLocales > to XML > should return xml string with formatting 1`] = `
+"<resources>
+  <string name=\\"key1\\">value1</string>
+  <string name=\\"key2\\">value2</string>
+</resources>"
+`;
+
+exports[`XmlLocales > to XML > should return xml string without formatting 1`] = `
+"<resources><string name=\\"key1\\">value1</string><string name=\\"key2\\">value2</string>
+  
+  
+</resources>"
+`;

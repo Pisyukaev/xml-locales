@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`XmlParser > should format xml string 1`] = `
+"<resources>
+  <string name=\\"key1\\">value1</string>
+  <string name=\\"key2\\">value2</string>
+</resources>"
+`;
+
+exports[`XmlParser > should parse json to xml 1`] = `
+"<resources><string name=\\"key1\\">value1</string><string name=\\"key2\\">value2</string>
+  
+  
+</resources>"
+`;
