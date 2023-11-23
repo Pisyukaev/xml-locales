@@ -9,7 +9,7 @@ import { XmlJsonData, XmlParser } from './utils/xml.js';
 import type {
 	AddOptions,
 	SortDirection,
-	UpdateKeyOptions,
+	UpdateOptions,
 	XmlDataTypes
 } from './utils/types.js';
 import type { XmlConstructor } from './utils/xml.js';
@@ -54,8 +54,12 @@ export class XmlLocales {
 		return this.newInstance();
 	}
 
-	updateKey(options: UpdateKeyOptions): XmlLocales {
-		this.xmlData = updateXmlNode(this.xmlData, options.oldKey, options.newKey);
+	update(options: UpdateOptions): XmlLocales {
+		this.xmlData = updateXmlNode(
+			this.xmlData,
+			options.oldValue,
+			options.newValue
+		);
 		return this.newInstance();
 	}
 

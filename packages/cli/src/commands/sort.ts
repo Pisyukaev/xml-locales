@@ -1,30 +1,38 @@
-import { sort } from 'xml-locales';
-import { modificationFile } from 'xml-locales/utils';
+import { SortDirection } from 'xml-locales';
 import type { ArgumentsCamelCase, Argv } from 'yargs';
+
+import { readFiles, writeFile } from '../utils/files.js';
 
 export const command = 'sort';
 export const description = 'Sorted keys of strings by asc or desc';
 
 export function builder(yargs: Argv) {
 	return yargs
+		.option('path', {
+			alias: 'p',
+			desc: 'Path of file or directory to adding string',
+			demandOption: true,
+			type: 'string',
+			default: process.cwd()
+		})
 		.option('direction', {
 			alias: 'd',
 			desc: 'Direction of key sort',
 			type: 'string',
-			default: 'asc'
+			default: 'asc',
+			choices: ['asc', 'desc']
 		})
-		.option('directory', {
-			alias: 'dir',
-			desc: 'Directory of localization files',
-			type: 'string',
-			default: 'mock'
-		})
-		.usage(`\nExample:\n ${command} --direction desc --directory src/locales`);
+		.usage(
+			`\nExample:\n ${command} --path "path/to/file/or/directory" --direction "desc"`
+		);
 }
 
 export async function handler({
-	direction,
-	directory
-}: ArgumentsCamelCase<{ direction: 'asc' | 'desc'; directory: string }>) {
-	modificationFile(sort({ direction }), directory);
+	path,
+	direction
+}: ArgumentsCamelCase<{ path: string; direction: SortDirection }>) {
+	const files = await readFiles(path);
+	for (const [path, file] of files) {
+		await writeFile(path, file.sort(direction).toXML());
+	}
 }

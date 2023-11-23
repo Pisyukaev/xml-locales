@@ -18,9 +18,9 @@ export interface AddOptions {
 	value: string;
 }
 
-export interface UpdateKeyOptions {
-	oldKey: string;
-	newKey: string;
+export interface UpdateOptions {
+	oldValue: string;
+	newValue: string;
 }
 
 export type SortDirection = 'asc' | 'desc';
