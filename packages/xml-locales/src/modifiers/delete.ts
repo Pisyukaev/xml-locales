@@ -1,26 +1,27 @@
-import { checkKeyValueExist } from '../utils/helpers.js';
-import { sort } from './sort.js';
-import type { DeleteOptions } from '../utils/types.js';
+import { checkXmlKey } from '../utils/helpers.js';
+import { XmlJsonData } from '../utils/xml.js';
 
-export function del({ keyValue, sort: sortDirection, jsonXml }: DeleteOptions) {
-	const {
-		resources: { string }
-	} = jsonXml;
+export function deleteByKeyXmlNode(
+	xmlData: XmlJsonData,
+	key: string
+): XmlJsonData {
+	const hasKey = checkXmlKey(xmlData, key);
+	if (!hasKey) return xmlData;
 
-	const hasKeyValue = checkKeyValueExist(keyValue, string);
+	const filteredNodes = xmlData.resources.string.filter(
+		(element) => element.key_name !== key
+	);
 
-	if (hasKeyValue) {
-		const filteredStrings = string.filter(
-			(element) =>
-				element['#text'] !== keyValue && element.key_name !== keyValue
-		);
+	return new XmlJsonData({ resources: { string: filteredNodes } });
+}
 
-		jsonXml.resources.string = filteredStrings;
-	}
+export function deleteByValueXmlNode(
+	xmlData: XmlJsonData,
+	value: string
+): XmlJsonData {
+	const filteredNodes = xmlData.resources.string.filter(
+		(element) => element['#text'] !== value
+	);
 
-	if (sortDirection) {
-		sort({ sortDirection, jsonXml });
-	}
-
-	return jsonXml;
+	return new XmlJsonData({ resources: { string: filteredNodes } });
 }

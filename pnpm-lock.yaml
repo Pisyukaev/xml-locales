@@ -63,7 +63,14 @@ importers:
         specifier: 17.7.2
         version: 17.7.2
 
-  packages/xml-locales: {}
+  packages/xml-locales:
+    dependencies:
+      fast-xml-parser:
+        specifier: 4.3.2
+        version: 4.3.2
+      xml-formatter:
+        specifier: 3.6.0
+        version: 3.6.0
 
 packages:
 
