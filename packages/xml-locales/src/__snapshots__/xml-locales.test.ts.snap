@@ -13,6 +13,27 @@ XmlJsonData {
 }
 `;
 
+exports[`XmlLocales > XmlLocales constructor > should return json object 1`] = `
+XmlJsonData {
+  "resources": {
+    "#text": "
+  
+  
+",
+    "string": [
+      {
+        "#text": "value1",
+        "key_name": "key1",
+      },
+      {
+        "#text": "value2",
+        "key_name": "key2",
+      },
+    ],
+  },
+}
+`;
+
 exports[`XmlLocales > should return json object 1`] = `
 XmlJsonData {
   "resources": {

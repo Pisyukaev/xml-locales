@@ -17,29 +17,36 @@ describe('XmlLocales', () => {
 		test('should add new node', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			const jsonXml = xmlLocales.add({ key: 'key3', value: 'value3' }).toJSON();
-			expect(jsonXml.resources.string[2]?.['#text']).toBe('value3');
+			const newNode = jsonXml.resources.string[2];
+
+			expect(newNode?.key_name).toBe('key3');
+			expect(newNode?.['#text']).toBe('value3');
 		});
 
 		test('should replace the value of the key', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.add({ key: 'key1', value: 'value3' });
-			const jsonXml = xmlLocales.add({ key: 'key3', value: 'value3' }).toJSON();
-			expect(jsonXml.resources.string[0]?.['#text']).toBe('value3');
+			const jsonXml = xmlLocales.add({ key: 'key1', value: 'value3' }).toJSON();
+			const newNode = jsonXml.resources.string[0];
+
+			expect(newNode?.key_name).toBe('key1');
+			expect(newNode?.['#text']).toBe('value3');
 		});
 	});
 
 	describe('remove', () => {
-		test('should remove the key', () => {
+		test('should remove a node of the key', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.deleteByKey('key1');
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value2');
 		});
 
-		test('should remove the value', () => {
+		test('should remove a node of the value', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.deleteByValue('value1');
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value2');
 		});
 
@@ -47,6 +54,7 @@ describe('XmlLocales', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.deleteByKey('key3');
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value1');
 		});
 	});
@@ -56,6 +64,7 @@ describe('XmlLocales', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.sort('asc');
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.key_name).toBe('key1');
 		});
 
@@ -63,6 +72,7 @@ describe('XmlLocales', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.sort('desc');
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[1]?.key_name).toBe('key1');
 		});
 	});
@@ -72,6 +82,7 @@ describe('XmlLocales', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.update({ oldValue: 'key1', newValue: 'newKey1' });
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.key_name).toBe('newKey1');
 		});
 
@@ -79,6 +90,7 @@ describe('XmlLocales', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			xmlLocales.update({ oldValue: 'value1', newValue: 'newValue1' });
 			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('newValue1');
 		});
 	});
@@ -91,6 +103,14 @@ describe('XmlLocales', () => {
 		test('constructor should parse xml data', () => {
 			const xmlLocales = new XmlLocales(oneStringXmlData);
 			const jsonXml = xmlLocales.toJSON();
+
+			expect(jsonXml).toMatchSnapshot();
+		});
+
+		test('should return json object', () => {
+			const xmlLocales = new XmlLocales(xmlData);
+			const jsonXml = xmlLocales.toJSON();
+
 			expect(jsonXml).toMatchSnapshot();
 		});
 	});
@@ -99,19 +119,15 @@ describe('XmlLocales', () => {
 		test('should return xml string with formatting', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			const xmlString = xmlLocales.toXML();
+
 			expect(xmlString).toMatchSnapshot();
 		});
 
 		test('should return xml string without formatting', () => {
 			const xmlLocales = new XmlLocales(xmlData);
 			const xmlString = xmlLocales.toXML(false);
+
 			expect(xmlString).toMatchSnapshot();
 		});
-	});
-
-	test('should return json object', () => {
-		const xmlLocales = new XmlLocales(xmlData);
-		const jsonXml = xmlLocales.toJSON();
-		expect(jsonXml).toMatchSnapshot();
 	});
 });
