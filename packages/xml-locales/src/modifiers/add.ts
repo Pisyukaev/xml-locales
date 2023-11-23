@@ -1,30 +1,19 @@
-import { checkKeyExist, replaceValue } from '../utils/helpers.js';
-import { sort } from './sort.js';
-import type { AddOptions } from '../utils/types.js';
+import { checkXmlKey, replaceXmlNodeValue } from '../utils/helpers.js';
+import { XmlJsonData } from '../utils/xml.js';
 
-export function add({ key, value, sortDirection, jsonXml }: AddOptions) {
-	const {
-		resources: { string }
-	} = jsonXml;
-
-	const hasKey = checkKeyExist(key, string);
-
+export function addXmlNode(
+	xmlData: XmlJsonData,
+	key: string,
+	value: string
+): XmlJsonData {
+	const hasKey = checkXmlKey(xmlData, key);
 	if (hasKey) {
-		const replacedStrings = replaceValue(string, key, value);
-
-		jsonXml.resources.string = replacedStrings;
-	}
-
-	if (!hasKey) {
-		jsonXml.resources.string.push({
+		return replaceXmlNodeValue(xmlData, key, value);
+	} else {
+		xmlData.resources.string.push({
 			key_name: key,
 			'#text': value
 		});
+		return xmlData;
 	}
-
-	if (sortDirection) {
-		sort({ sortDirection, jsonXml });
-	}
-
-	return jsonXml;
 }

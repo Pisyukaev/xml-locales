@@ -1,26 +1,25 @@
-import type { StringElement } from './types.js';
+import { XmlJsonData } from './xml.js';
+import type { XmlNode } from './types.js';
 
-export function checkKeyExist(key: string, strElements: StringElement[]) {
-	return strElements.find(
-		({ key_name }: { key_name: string }) => key_name === key
-	);
+export function checkXmlKey(xmlData: XmlJsonData, key: string): boolean {
+	return xmlData.resources.string.some((element) => element.key_name === key);
 }
 
 export function checkKeyValueExist(
 	keyValue: string,
-	strElement: StringElement[]
-) {
-	return strElement.find(
+	strElement: XmlNode[]
+): boolean {
+	return strElement.some(
 		(element) => element['#text'] === keyValue || element.key_name === keyValue
 	);
 }
 
-export function replaceValue(
-	strElements: StringElement[],
+export function replaceXmlNodeValue(
+	xmlData: XmlJsonData,
 	key: string,
 	newValue: string
-) {
-	const replacedStrings = strElements.map((element) => {
+): XmlJsonData {
+	const replacedStrings = xmlData.resources.string.map((element) => {
 		if (element.key_name === key) {
 			return {
 				...element,
@@ -31,31 +30,5 @@ export function replaceValue(
 		return element;
 	});
 
-	return replacedStrings;
-}
-
-export function replace(
-	strElements: StringElement[],
-	oldKeyValue: string,
-	newKeyValue: string
-) {
-	const replaced = strElements.map((element) => {
-		if (element.key_name === oldKeyValue) {
-			return {
-				...element,
-				key_name: newKeyValue
-			};
-		}
-
-		if (element['#text'] === oldKeyValue) {
-			return {
-				...element,
-				'#text': newKeyValue
-			};
-		}
-
-		return element;
-	});
-
-	return replaced;
+	return new XmlJsonData({ resources: { string: replacedStrings } });
 }

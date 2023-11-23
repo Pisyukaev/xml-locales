@@ -1,48 +1,29 @@
-export interface StringElement {
+import { XmlJsonData } from './xml.js';
+
+export interface XmlNode {
 	key_name: string;
 	'#text': string;
 }
 
+export type XmlDataTypes = string | Buffer | XmlJsonData;
+
 export interface XmlJson {
 	resources: {
-		string: StringElement[];
+		string: XmlNode[];
 	};
 }
 
-export interface RawXmlJson {
-	resources: {
-		string: StringElement | StringElement[];
-	};
-}
-
-export type SortDirection = 'asc' | 'desc';
-
-export interface BaseOptions {
-	jsonXml: XmlJson;
-	sortDirection?: SortDirection;
-}
-
-export interface AddOptions extends BaseOptions {
+export interface AddOptions {
 	key: string;
 	value: string;
 }
 
-export interface DeleteOptions extends BaseOptions {
-	keyValue: string;
-	sort?: SortDirection;
+export interface UpdateOptions {
+	oldValue: string;
+	newValue: string;
 }
 
-export interface ChangeOptions extends BaseOptions {
-	oldKey: string;
-	newKey: string;
-}
-
-export interface SortOptions extends BaseOptions {
+export type SortDirection = 'asc' | 'desc';
+export interface SortOptions {
 	sortDirection: SortDirection;
 }
-
-export type ModifierOptions =
-	| AddOptions
-	| DeleteOptions
-	| ChangeOptions
-	| SortOptions;
