@@ -1,5 +1,4 @@
 import { describe, expect, test } from 'vitest';
-import { c } from 'vitest/dist/reporters-5f784f42.js';
 
 import { XmlLocales } from './xml-locales.js';
 
