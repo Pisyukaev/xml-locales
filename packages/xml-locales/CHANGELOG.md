@@ -1,5 +1,11 @@
 # xml-locales
 
+## 0.0.4
+
+### Patch Changes
+
+- fix default options for xml parser and builder
+
 ## 0.0.3
 
 ### Patch Changes
