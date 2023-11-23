@@ -36,7 +36,14 @@ export class XmlLocales {
 		}
 
 		if (xmlData) {
-			this.xmlData = this.xmlParser.xmlToJson(xmlData);
+			const parsedXml = this.xmlParser.xmlToJson(xmlData);
+			if (Array.isArray(parsedXml.resources.string)) {
+				this.xmlData = parsedXml;
+			} else {
+				this.xmlData = new XmlJsonData({
+					resources: { string: [parsedXml.resources.string] }
+				});
+			}
 			return;
 		}
 
