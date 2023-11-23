@@ -15,7 +15,7 @@ export interface XmlConstructor {
 }
 
 const defaultParserOptions: X2jOptionsOptional = {
-	trimValues: true,
+	trimValues: false,
 	ignoreDeclaration: true,
 	attributeNamePrefix: 'key_',
 	alwaysCreateTextNode: true,
@@ -24,7 +24,8 @@ const defaultParserOptions: X2jOptionsOptional = {
 
 const defaultBuilderOptions: XmlBuilderOptionsOptional = {
 	ignoreAttributes: false,
-	attributeNamePrefix: 'key_'
+	attributeNamePrefix: 'key_',
+	processEntities: false
 };
 
 const defaultFormatterOptions: XMLFormatterOptions = {
