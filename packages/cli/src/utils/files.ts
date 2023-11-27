@@ -1,12 +1,14 @@
-import fs from 'node:fs/promises';
+import * as fs from 'node:fs/promises';
 import { XmlLocales } from 'xml-locales';
 
 async function scanPath(path: string): Promise<string[]> {
 	const statPath = await fs.stat(path);
 
 	if (statPath.isDirectory()) {
-		const directory = await fs.readdir(path);
-		return directory.filter((dir) => dir.endsWith('.xml'));
+		const files = await fs.readdir(path);
+		return files
+			.filter((file) => file.endsWith('.xml'))
+			.map((file) => `${path}/${file}`);
 	}
 
 	return [path];
