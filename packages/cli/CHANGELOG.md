@@ -1,5 +1,11 @@
 # @xml-locales/cli
 
+## 0.0.7
+
+### Patch Changes
+
+- Fix edit files from different default directory. Added tests
+
 ## 0.0.6
 
 ### Patch Changes
