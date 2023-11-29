@@ -64,12 +64,10 @@ describe('writeFile', () => {
 	test('writes a file', async () => {
 		await writeFile(
 			'packages/cli/mock/locales/strings1.xml',
-			`
-<resources>
+			`<resources>
   <string name="key1">value1</string>
   <string name="key2">value2</string>
-</resources>
-`
+</resources>`
 		);
 	});
 });
