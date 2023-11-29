@@ -43,7 +43,7 @@ describe('readFiles', () => {
 				await readFiles('locales/doesNotExist.xml');
 			} catch (e: any) {
 				expect(e.message).toBe(
-					"Error scanning or reading path locales/doesNotExist.xml: ENOENT: no such file or directory, stat 'locales/doesNotExist.xml'"
+					`Error scanning or reading path "locales/doesNotExist.xml": ENOENT: no such file or directory, stat 'locales/doesNotExist.xml'`
 				);
 			}
 		});
@@ -53,7 +53,7 @@ describe('readFiles', () => {
 				await readFiles('path/does/not/exist');
 			} catch (e: any) {
 				expect(e.message).toBe(
-					"Error scanning or reading path path/does/not/exist: ENOENT: no such file or directory, stat 'path/does/not/exist'"
+					`Error scanning or reading path "path/does/not/exist": ENOENT: no such file or directory, stat 'path/does/not/exist'`
 				);
 			}
 		});

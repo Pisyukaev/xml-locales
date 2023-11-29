@@ -1,4 +1,4 @@
-import * as fs from 'node:fs/promises';
+import fs from 'node:fs/promises';
 import { XmlLocales } from 'xml-locales';
 
 async function scanPath(path: string): Promise<string[]> {
@@ -6,16 +6,22 @@ async function scanPath(path: string): Promise<string[]> {
 		const statPath = await fs.stat(path);
 
 		if (statPath.isDirectory()) {
-			const files = await fs.readdir(path);
-			return files
+			const paths = await fs.readdir(path);
+			return paths
 				.filter((file) => file.endsWith('.xml'))
 				.map((file) => `${path}/${file}`);
 		}
-	} catch (e: any) {
-		throw new Error(`Error scanning or reading path ${path}: ${e.message}`);
+	} catch (err) {
+		throw new Error(
+			`Error scanning or reading path "${path}": ${(err as Error).message}`
+		);
 	}
 
-	return path.endsWith('.xml') ? [path] : [];
+	if (path.endsWith('.xml')) {
+		return [path];
+	}
+
+	return [];
 }
 
 export async function readFiles(path: string): Promise<[string, XmlLocales][]> {
@@ -30,15 +36,15 @@ export async function readFiles(path: string): Promise<[string, XmlLocales][]> {
 		}
 
 		return files;
-	} catch (e: any) {
-		throw new Error(`Error reading file ${path}: ${e.message}`);
+	} catch (err) {
+		throw new Error(`Error reading file "${path}": ${(err as Error).message}`);
 	}
 }
 
-export async function writeFile(path: string, content: string) {
+export async function writeFile(path: string, content: string): Promise<void> {
 	try {
 		await fs.writeFile(path, content, 'utf-8');
-	} catch (e: any) {
-		throw new Error(`Error writing file ${path}: ${e.message}`);
+	} catch (err) {
+		throw new Error(`Error writing file "${path}": ${(err as Error).message}`);
 	}
 }

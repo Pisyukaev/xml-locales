@@ -1,6 +1,7 @@
 {
 	"name": "xml-locales-workspaces",
 	"version": "0.0.0",
+	"type": "module",
 	"private": true,
 	"description": "Tool for locales in xml files",
 	"workspaces": [
