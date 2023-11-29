@@ -1,34 +1,16 @@
 import type { ArgumentsCamelCase, Argv } from 'yargs';
 
+import { keyValueOptions } from '../options/key-value.js';
+import { pathOption } from '../options/path.js';
 import { readFiles, writeFile } from '../utils/files.js';
 
 export const command = 'add';
 export const description = 'Add one localization string in files';
 
-export function builder(yargs: Argv) {
-	return yargs
-		.option('path', {
-			alias: 'p',
-			desc: 'Path of file or directory to adding string',
-			demandOption: true,
-			type: 'string',
-			default: process.cwd()
-		})
-		.option('key', {
-			alias: 'k',
-			desc: 'Key of adding string',
-			demandOption: true,
-			type: 'string'
-		})
-		.option('value', {
-			alias: 'v',
-			desc: 'Value of adding string',
-			demandOption: true,
-			type: 'string'
-		})
-		.usage(
-			`\nExample:\n $0 ${command} --path "path/to/file/or/directory" --key "some_key" --value "some_value"`
-		);
+export function builder(argv: Argv) {
+	return keyValueOptions(pathOption(argv), 'add').usage(
+		`\nExample:\n $0 ${command} --path "path/to/file/or/directory" --key "some_key" --value "some_value"`
+	);
 }
 
 export async function handler({

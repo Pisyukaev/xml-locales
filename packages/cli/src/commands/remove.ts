@@ -1,32 +1,16 @@
 import type { ArgumentsCamelCase, Argv } from 'yargs';
 
+import { keyValueOptions } from '../options/key-value.js';
+import { pathOption } from '../options/path.js';
 import { readFiles, writeFile } from '../utils/files.js';
 
 export const command = 'remove';
 export const description = 'Remove one localization string in files';
 
 export function builder(yargs: Argv) {
-	return yargs
-		.option('path', {
-			alias: 'p',
-			desc: 'Path of file or directory to adding string',
-			demandOption: true,
-			type: 'string',
-			default: process.cwd()
-		})
-		.option('key', {
-			alias: 'k',
-			desc: 'Key of remove string',
-			type: 'string'
-		})
-		.option('value', {
-			alias: 'v',
-			desc: 'Value of remove string',
-			type: 'string'
-		})
-		.usage(
-			`\nExample:\n ${command} --path "path/to/file/or/directory" --key "some_key" --value "or_some_value"`
-		);
+	return keyValueOptions(pathOption(yargs), 'remove').usage(
+		`\nExample:\n ${command} --path "path/to/file/or/directory" --key "some_key" --value "or_some_value"`
+	);
 }
 
 export async function handler({

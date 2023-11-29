@@ -1,6 +1,5 @@
 <resources>
   <string name="key1">Value1</string>
   <string name="key2">Value2</string>
-  <string name="kkk">vvvv</string>
-  <resources></resources>
+  <string name="key3">Value3</string>
 </resources>
