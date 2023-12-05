@@ -2,6 +2,7 @@ import type { ArgumentsCamelCase, Argv } from 'yargs';
 
 import { keyValueOptions } from '../options/key-value.js';
 import { pathOption } from '../options/path.js';
+import { Diff } from '../utils/diff.js';
 import { readFiles, writeFile } from '../utils/files.js';
 
 export const command = 'add';
@@ -24,6 +25,9 @@ export async function handler({
 }>) {
 	const files = await readFiles(path);
 	for (const [path, file] of files) {
-		await writeFile(path, file.add({ key, value }).toXML());
+		const diff = new Diff(path, file);
+		const xml = file.add({ key, value }).toXML();
+		await writeFile(path, xml);
+		diff.print(xml);
 	}
 }

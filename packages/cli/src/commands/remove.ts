@@ -2,6 +2,7 @@ import type { ArgumentsCamelCase, Argv } from 'yargs';
 
 import { keyValueOptions } from '../options/key-value.js';
 import { pathOption } from '../options/path.js';
+import { Diff } from '../utils/diff.js';
 import { readFiles, writeFile } from '../utils/files.js';
 
 export const command = 'remove';
@@ -24,6 +25,8 @@ export async function handler({
 }>) {
 	const files = await readFiles(path);
 	for (let [path, file] of files) {
+		const diff = new Diff(path, file);
+
 		if (key) {
 			file = file.deleteByKey(key);
 		}
@@ -32,6 +35,8 @@ export async function handler({
 			file = file.deleteByValue(value);
 		}
 
-		await writeFile(path, file.toXML());
+		const xml = file.toXML();
+		await writeFile(path, xml);
+		diff.print(xml);
 	}
 }
