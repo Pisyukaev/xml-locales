@@ -26,11 +26,12 @@
 		"test:watch": "vitest --ui --watch --coverage"
 	},
 	"dependencies": {
-		"@inquirer/prompts": "3.3.0",
+		"diff": "5.1.0",
 		"xml-locales": "workspace:0.0.4",
 		"yargs": "17.7.2"
 	},
 	"devDependencies": {
+		"@types/diff": "5.0.8",
 		"@types/yargs": "17.0.32"
 	}
 }

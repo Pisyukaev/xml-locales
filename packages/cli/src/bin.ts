@@ -9,4 +9,4 @@ yargs(hideBin(process.argv))
 	.usage('$0 <cmd> [args]')
 	// @ts-ignore
 	.command(commands)
-	.help();
+	.help().argv;
