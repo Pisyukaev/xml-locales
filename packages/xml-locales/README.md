@@ -191,15 +191,15 @@ Output JSON:
 
 ```json
 {
- resources: {
-  string: [
+ "resources": {
+  "string": [
    {
-    key_name: 'key1',
-    '#text': 'value1'
+    "key_name": "key1",
+    "#text": "value1"
    },
    {
-    key_name: 'key2',
-    '#text': 'value2'
+    "key_name": "key2",
+    "#text": "value2"
    }
   ]
  }
