@@ -40,8 +40,11 @@ const defaultXmlOptions: XmlConstructor = {
 };
 
 export class XmlParser {
+	/** @internal */
 	private parser: XMLParser;
+	/** @internal */
 	private builder: XMLBuilder;
+	/** @internal */
 	private formatter: (xmlString: string) => string;
 
 	constructor(xmlOptions?: XmlConstructor) {

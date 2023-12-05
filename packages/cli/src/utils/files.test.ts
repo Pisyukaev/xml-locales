@@ -67,7 +67,8 @@ describe('writeFile', () => {
 			`<resources>
   <string name="key1">value1</string>
   <string name="key2">value2</string>
-</resources>`
+</resources>
+`
 		);
 	});
 });

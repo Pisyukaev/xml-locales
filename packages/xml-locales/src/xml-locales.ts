@@ -15,9 +15,11 @@ import type {
 import type { XmlConstructor } from './utils/xml.js';
 
 export class XmlLocales {
+	/** @internal */
 	private readonly xmlParser: XmlParser;
-
+	/** @internal */
 	private xmlOptions?: XmlConstructor;
+	/** @internal */
 	private xmlData: XmlJsonData;
 
 	constructor(
@@ -29,6 +31,7 @@ export class XmlLocales {
 		this.parseXml(xmlData);
 	}
 
+	/** @internal */
 	private parseXml(xmlData?: XmlDataTypes): void {
 		if (xmlData instanceof XmlJsonData) {
 			this.xmlData = xmlData;
@@ -52,6 +55,7 @@ export class XmlLocales {
 		}
 	}
 
+	/** @internal */
 	private newInstance(): XmlLocales {
 		return new XmlLocales(this.xmlData, this.xmlOptions);
 	}
