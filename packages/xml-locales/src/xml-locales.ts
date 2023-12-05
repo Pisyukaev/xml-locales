@@ -41,7 +41,13 @@ export class XmlLocales {
 		if (xmlData) {
 			const parsedXml = this.xmlParser.xmlToJson(xmlData);
 			if (Array.isArray(parsedXml.resources.string)) {
-				this.xmlData = parsedXml;
+				const filteredNodes = parsedXml.resources.string.filter(
+					(element) => element !== undefined
+				);
+
+				this.xmlData = new XmlJsonData({
+					resources: { string: filteredNodes }
+				});
 			} else {
 				this.xmlData = new XmlJsonData({
 					resources: { string: [parsedXml.resources.string] }
