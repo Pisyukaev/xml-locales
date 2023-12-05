@@ -1,5 +1,15 @@
 # @xml-locales/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- 504a133: feat: print diff
+  fix: --help flag now it works
+  chore: remove unused prompts
+- Updated dependencies [504a133]
+  - xml-locales@0.0.5
+
 ## 0.0.7
 
 ### Patch Changes

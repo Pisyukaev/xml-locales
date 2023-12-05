@@ -48,7 +48,7 @@ importers:
         specifier: 5.1.0
         version: 5.1.0
       xml-locales:
-        specifier: workspace:0.0.4
+        specifier: workspace:0.0.5
         version: link:../xml-locales
       yargs:
         specifier: 17.7.2

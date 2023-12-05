@@ -1,5 +1,11 @@
 # xml-locales
 
+## 0.0.5
+
+### Patch Changes
+
+- 504a133: fix: filtering undefined xml nodes
+
 ## 0.0.4
 
 ### Patch Changes
