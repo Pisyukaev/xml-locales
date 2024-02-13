@@ -10,29 +10,29 @@ export const description = 'Remove one localization string in files';
 
 export function builder(yargs: Argv) {
 	return keyValueOptions(pathOption(yargs), 'remove').usage(
-		`\nExample:\n ${command} --path "path/to/file/or/directory" --key "some_key" --value "or_some_value"`
+		`\nExample:\n ${command} --path "path/to/file/or/directory" --keys "some_key" --values "or_some_value"`
 	);
 }
 
 export async function handler({
-	key,
-	value,
+	keys,
+	values,
 	path
 }: ArgumentsCamelCase<{
-	key: string;
-	value: string;
+	keys: string[];
+	values: string[];
 	path: string;
 }>) {
 	const files = await readFiles(path);
 	for (let [path, file] of files) {
 		const diff = new Diff(path, file);
 
-		if (key) {
-			file = file.deleteByKey(key);
+		if (keys) {
+			file = file.deleteByKey(keys);
 		}
 
-		if (value) {
-			file = file.deleteByValue(value);
+		if (values) {
+			file = file.deleteByValue(values);
 		}
 
 		const xml = file.toXML();

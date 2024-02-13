@@ -2,30 +2,30 @@ import type { Argv } from 'yargs';
 
 export function keyValueOptions(argv: Argv, action: string) {
 	return argv
-		.option('key', {
+		.option('keys', {
 			alias: 'k',
-			desc: `Key of ${action} string`,
-			type: 'string'
+			desc: `Key(s) of ${action} string(s)`,
+			type: 'array'
 		})
-		.option('value', {
+		.option('values', {
 			alias: 'v',
-			desc: `Value of ${action} string`,
-			type: 'string'
+			desc: `Value(s) of ${action} string(s)`,
+			type: 'array'
 		});
 }
 
 export function oldKeyOrValueOptions(argv: Argv) {
 	return argv
-		.option('oldValue', {
+		.option('old', {
 			alias: 'o',
-			desc: 'Old key or value of update string',
+			desc: 'Old key(s) or value(s) of update string(s)',
 			demandOption: true,
-			type: 'string'
+			type: 'array'
 		})
-		.option('newValue', {
+		.option('new', {
 			alias: 'n',
-			desc: 'New key or value of update string',
+			desc: 'New key(s) or value(s) of update string(s)',
 			demandOption: true,
-			type: 'string'
+			type: 'array'
 		});
 }

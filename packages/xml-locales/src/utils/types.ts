@@ -14,13 +14,13 @@ export interface XmlJson {
 }
 
 export interface AddOptions {
-	key: string;
-	value: string;
+	keys: string[];
+	values: string[];
 }
 
 export interface UpdateOptions {
-	oldValue: string;
-	newValue: string;
+	oldValues: string[];
+	newValues: string[];
 }
 
 export type SortDirection = 'asc' | 'desc';

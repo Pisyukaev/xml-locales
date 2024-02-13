@@ -1,6 +1,6 @@
 {
 	"name": "@xml-locales/cli",
-	"version": "0.0.8",
+	"version": "1.0.0",
 	"type": "module",
 	"bin": {
 		"xml-locales": "./dist/bin.js"
@@ -27,7 +27,7 @@
 	},
 	"dependencies": {
 		"diff": "5.1.0",
-		"xml-locales": "workspace:0.0.5",
+		"xml-locales": "workspace:1.0.0",
 		"yargs": "17.7.2"
 	},
 	"devDependencies": {

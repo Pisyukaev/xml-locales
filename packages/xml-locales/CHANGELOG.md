@@ -1,5 +1,11 @@
 # xml-locales
 
+## 1.0.0
+
+### Major Changes
+
+- Add multiple changes, update tests
+
 ## 0.0.5
 
 ### Patch Changes

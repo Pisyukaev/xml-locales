@@ -66,27 +66,29 @@ export class XmlLocales {
 		return new XmlLocales(this.xmlData, this.xmlOptions);
 	}
 
-	add(options: AddOptions): XmlLocales {
-		this.xmlData = addXmlNode(this.xmlData, options.key, options.value);
+	add({ keys, values }: AddOptions): XmlLocales {
+		for (let i = 0; i < keys.length; i++) {
+			this.xmlData = addXmlNode(this.xmlData, keys[i]!, values[i]!);
+		}
+
 		return this.newInstance();
 	}
 
-	update(options: UpdateOptions): XmlLocales {
-		this.xmlData = updateXmlNode(
-			this.xmlData,
-			options.oldValue,
-			options.newValue
-		);
+	update({ newValues, oldValues }: UpdateOptions): XmlLocales {
+		for (let i = 0; i < oldValues.length; i++) {
+			this.xmlData = updateXmlNode(this.xmlData, oldValues[i]!, newValues[i]!);
+		}
+
 		return this.newInstance();
 	}
 
-	deleteByKey(key: string): XmlLocales {
-		this.xmlData = deleteByKeyXmlNode(this.xmlData, key);
+	deleteByKey(keys: string[]): XmlLocales {
+		this.xmlData = deleteByKeyXmlNode(this.xmlData, keys);
 		return this.newInstance();
 	}
 
-	deleteByValue(value: string): XmlLocales {
-		this.xmlData = deleteByValueXmlNode(this.xmlData, value);
+	deleteByValue(values: string[]): XmlLocales {
+		this.xmlData = deleteByValueXmlNode(this.xmlData, values);
 		return this.newInstance();
 	}
 

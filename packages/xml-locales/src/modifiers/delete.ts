@@ -1,15 +1,11 @@
-import { checkXmlKey } from '../utils/helpers.js';
 import { XmlJsonData } from '../utils/xml.js';
 
 export function deleteByKeyXmlNode(
 	xmlData: XmlJsonData,
-	key: string
+	keys: string[]
 ): XmlJsonData {
-	const hasKey = checkXmlKey(xmlData, key);
-	if (!hasKey) return xmlData;
-
 	const filteredNodes = xmlData.resources.string.filter(
-		(element) => element.key_name !== key
+		(element) => !keys.includes(element.key_name)
 	);
 
 	return new XmlJsonData({ resources: { string: filteredNodes } });
@@ -17,10 +13,10 @@ export function deleteByKeyXmlNode(
 
 export function deleteByValueXmlNode(
 	xmlData: XmlJsonData,
-	value: string
+	values: string[]
 ): XmlJsonData {
 	const filteredNodes = xmlData.resources.string.filter(
-		(element) => element['#text'] !== value
+		(element) => !values.includes(element['#text'])
 	);
 
 	return new XmlJsonData({ resources: { string: filteredNodes } });
