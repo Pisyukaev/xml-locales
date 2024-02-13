@@ -15,18 +15,23 @@ export function builder(yargs: Argv) {
 }
 
 export async function handler({
-	oldValue,
-	newValue,
+	old: oldValues,
+	new: newValues,
 	path
 }: ArgumentsCamelCase<{
-	oldValue: string;
-	newValue: string;
+	old: string[];
+	new: string[];
 	path: string;
 }>) {
 	const files = await readFiles(path);
 	for (const [path, file] of files) {
 		const diff = new Diff(path, file);
-		const xml = file.update({ oldValue, newValue }).toXML();
+
+		if (oldValues.length !== newValues.length) {
+			throw new Error('The number of old and new values must be the same');
+		}
+
+		const xml = file.update({ oldValues, newValues }).toXML();
 		await writeFile(path, xml);
 		diff.print(xml);
 	}
