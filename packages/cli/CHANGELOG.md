@@ -1,5 +1,16 @@
 # @xml-locales/cli
 
+## 1.0.0
+
+### Major Changes
+
+- Add multiple changes, update tests
+
+### Patch Changes
+
+- Updated dependencies
+  - xml-locales@1.0.0
+
 ## 0.0.8
 
 ### Patch Changes
