@@ -38,45 +38,45 @@ npx @xml-locales/cli <command> [...args]
 
 ### Add Command
 
-The `add` command is used to add a new key-value pair to the XML localization file or files from directory.
+The `add` command is used to add a new key(s)-value(s) pair to the XML localization file or files from directory.
 
 ```sh
-xml-locales add --path path/to/file_or_directory --key newKey --value newValue
+xml-locales add --path path/to/file_or_directory --keys newKey --values newValue
 ```
 
 | Flag    | Alias | Default | Description                                                                 |
 |---------|-------|---------|-----------------------------------------------------------------------------|
 | `--path`| `-p`  | `process.cwd()`    | The path to the XML localization file or directory where the key-value pair will be added. |
-| `--key` | `-k`  | None    | The new key to be added.                                                    |
-| `--value`| `-v` | None   | The value to be associated with the new key.                                |
+| `--keys` | `-k`  | None    | The new key(s) to be added.                                                    |
+| `--values`| `-v` | None   | The value(s) to be associated with the new key.                                |
 
 ### Remove Command
 
-The `remove` command is used to remove a key-value pair from the XML localization file or files from directory.
+The `remove` command is used to remove a key(s)-value(s) pair from the XML localization file or files from directory.
 
 ```sh
-xml-locales remove --path path/to/file_or_directory --key keyToRemove --value valueToRemove
+xml-locales remove --path path/to/file_or_directory --keys keyToRemove --values valueToRemove
 ```
 
 | Flag    | Alias | Default | Description                                                                 |
 |---------|-------|---------|-----------------------------------------------------------------------------|
 | `--path`| `-p`  | `process.cwd()`    | The path to the XML localization file or directory where the key-value pair will be removed. |
-| `--key` | `-k`  | None    | Removed string by the key.                                                      |
-| `--value`| `-v` | None   | Or removed string by the value. |
+| `--keys` | `-k`  | None    | Removed string by the key(s).                                                      |
+| `--values`| `-v` | None   | Or removed string by the value(s). |
 
 ### Update Command
 
-The `update` command is used to update a key-value pair in the XML localization file or files from directory.
+The `update` command is used to update a key(s)-value(s) pair in the XML localization file or files from directory.
 
 ```sh
-xml-locales update --path path/to/file_or_directory --oldValue oldValue --newValue newValue
+xml-locales update --path path/to/file_or_directory --old oldValue --new newValue
 ```
 
 | Flag       | Alias | Default | Description                                                                 |
 |------------|-------|---------|-----------------------------------------------------------------------------|
 | `--path`   | `-p`  | `process.cwd()`    | The path to the XML localization file or directory where the key-value pair will be updated. |
-| `--oldValue` | `-o`  | None    | The old key or value to be updated.                                        |
-| `--newValue`| `-n` | None   | The new key or value to replace the old one.                               |
+| `--old` | `-o`  | None    | The old key(s) or value(s) to be updated.                                        |
+| `--new`| `-n` | None   | The new key(s) or value(s) to replace the old one.                               |
 
 ### Sort Command
 

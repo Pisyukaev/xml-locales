@@ -83,7 +83,7 @@ const xmlData = `
 `
 
 const xmlLocales = new XmlLocales(xmlData)
-const jsonData = xmlLocales.add({key: 'newKey', value: 'newValue'}).toXML()
+const jsonData = xmlLocales.add({keys: ['newKey'], values: ['newValue']}).toXML()
 
 console.log(jsonData)
 ```
@@ -111,9 +111,9 @@ const xmlData = `
 `
 
 const xmlLocales = new XmlLocales(xmlData)
-const jsonData = xmlLocales.add({key: 'newKey', value: 'newValue'})
-.update({oldValue: 'key1', newValue: 'firstKey'})
-.update({oldValue: 'value2', newValue: 'secondValue'})
+const jsonData = xmlLocales.add({keys: ['newKey'], values: ['newValue']})
+.update({oldValues: ['key1'], newValues: ['firstKey']})
+.update({oldValues: ['value2'], newValues: ['secondValue']})
 .toXML()
 
 console.log(jsonData)
@@ -141,7 +141,7 @@ const xmlData = `
 `
 
 const xmlLocales = new XmlLocales(xmlData)
-const jsonData = xmlLocales.add({key: 'newKey', value: 'newValue'})
+const jsonData = xmlLocales.add({keys: ['newKey'], values: ['newValue']})
 .deleteByKey('key1')
 .deleteByValue('value2')
 .toXML()
@@ -220,9 +220,9 @@ const xmlData = `
 
 const xmlLocales = new XmlLocales(xmlData)
 
-const jsonData = xmlLocales.add({key: 'newKey', value: 'newValue'})
-.add({key: 'newKey2', value: 'newValue2'})
-.update({oldValue: 'key1', newValue: 'firstKey'})
+const jsonData = xmlLocales.add({keys: ['newKey'], values: ['newValue']})
+.add({keys: ['newKey2'], values: ['newValue2']})
+.update({oldValues: ['key1'], newValues: ['firstKey']})
 .sort('desc')
 .toXML()
 
