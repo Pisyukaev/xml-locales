@@ -15,7 +15,9 @@ describe('XmlLocales', () => {
 	describe('add', () => {
 		test('should add new node', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			const jsonXml = xmlLocales.add({ key: 'key3', value: 'value3' }).toJSON();
+			const jsonXml = xmlLocales
+				.add({ keys: ['key3'], values: ['value3'] })
+				.toJSON();
 			const newNode = jsonXml.resources.string[2];
 
 			expect(newNode?.key_name).toBe('key3');
@@ -24,7 +26,9 @@ describe('XmlLocales', () => {
 
 		test('should replace the value of the key', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			const jsonXml = xmlLocales.add({ key: 'key1', value: 'value3' }).toJSON();
+			const jsonXml = xmlLocales
+				.add({ keys: ['key1'], values: ['value3'] })
+				.toJSON();
 			const newNode = jsonXml.resources.string[0];
 
 			expect(newNode?.key_name).toBe('key1');
@@ -35,7 +39,7 @@ describe('XmlLocales', () => {
 	describe('remove', () => {
 		test('should remove a node of the key', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.deleteByKey('key1');
+			xmlLocales.deleteByKey(['key1']);
 			const jsonXml = xmlLocales.toJSON();
 
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value2');
@@ -43,7 +47,7 @@ describe('XmlLocales', () => {
 
 		test('should remove a node of the value', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.deleteByValue('value1');
+			xmlLocales.deleteByValue(['value1']);
 			const jsonXml = xmlLocales.toJSON();
 
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value2');
@@ -51,7 +55,7 @@ describe('XmlLocales', () => {
 
 		test('not found key or value', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.deleteByKey('key3');
+			xmlLocales.deleteByKey(['key3']);
 			const jsonXml = xmlLocales.toJSON();
 
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('value1');
@@ -79,7 +83,7 @@ describe('XmlLocales', () => {
 	describe('update', () => {
 		test('should update key', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.update({ oldValue: 'key1', newValue: 'newKey1' });
+			xmlLocales.update({ oldValues: ['key1'], newValues: ['newKey1'] });
 			const jsonXml = xmlLocales.toJSON();
 
 			expect(jsonXml.resources.string[0]?.key_name).toBe('newKey1');
@@ -87,7 +91,7 @@ describe('XmlLocales', () => {
 
 		test('should update value', () => {
 			const xmlLocales = new XmlLocales(xmlData);
-			xmlLocales.update({ oldValue: 'value1', newValue: 'newValue1' });
+			xmlLocales.update({ oldValues: ['value1'], newValues: ['newValue1'] });
 			const jsonXml = xmlLocales.toJSON();
 
 			expect(jsonXml.resources.string[0]?.['#text']).toBe('newValue1');
