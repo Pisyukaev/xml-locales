@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { relative, resolve } from 'node:path';
 import { XmlLocales } from 'xml-locales';
 
 async function scanPath(path: string): Promise<string[]> {
@@ -10,7 +10,7 @@ async function scanPath(path: string): Promise<string[]> {
 			const paths = await fs.readdir(path);
 			return paths
 				.filter((file) => file.endsWith('.xml'))
-				.map((file) => resolve(`${path}/${file}`));
+				.map((file) => relative(process.cwd(), resolve(`${path}/${file}`)));
 		}
 	} catch (err) {
 		throw new Error(
