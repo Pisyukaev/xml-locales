@@ -1,5 +1,11 @@
 # @xml-locales/cli
 
+## 1.1.0
+
+### Minor Changes
+
+- aa16c7c: Add covert command to convert XML files with locales to JSON files
+
 ## 1.0.0
 
 ### Major Changes
