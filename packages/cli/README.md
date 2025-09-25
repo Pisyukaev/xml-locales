@@ -91,6 +91,18 @@ xml-locales sort --path path/to/file_or_directory --direction asc_or_desc
 | `--path`   | `-p`  | `process.cwd()`    | The path to the XML localization file or directory where the keys will be sorted. |
 | `--direction` | `-d`  | 'asc'    | The sort direction. Can be 'asc' for ascending order or 'desc' for descending order. |
 
+### Convert Command
+
+The `convert` command is used to convert the XML localization file or directory to JSON format.
+
+```sh
+xml-locales convert --path path/to/file_or_directory
+```
+
+| Flag       | Alias | Default | Description                                                                 |
+|------------|-------|---------|-----------------------------------------------------------------------------|
+| `--path`   | `-p`  | `process.cwd()`    | The path to the XML localization file or directory where the file will be converted. |
+
 ## Packages
 
 | Package  | version   |
