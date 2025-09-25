@@ -1,6 +1,6 @@
 # @xml-locales/cli
 
-[![NPM](https://img.shields.io/npm/v/xml-locales.svg)](https://www.npmjs.com/package/xml-locales)
+[![NPM](https://img.shields.io/npm/v/xml-locales.svg)](https://www.npmjs.com/package/@xml-locales/cli)
 
 This is cli tool to work with localization files in xml.
 
